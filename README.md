@@ -10,7 +10,8 @@ Executa em qualquer plataforma: Windows, MacOS, Linux, etc.
 
 ## Dependências
 Este programa precisa de NodeJS para executar (http://nodejs.org/)  
-Também tens de ter uma shell BASH para invocar o programa.
+Também tens de ter uma shell BASH para invocar o programa.  
+Em Windows podes fazer download de uma bash em [Git Bash](https://git-scm.com/download/win), [MinGW](https://sourceforge.net/projects/mingw-w64/) ou [Cygwin](https://cygwin.com/install.html).
 
 ## Instalar
 Faz o download do ficheiro `horos`. Torna-o executável com `chmod +x horos` e executa-o. Já está!  
