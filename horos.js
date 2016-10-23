@@ -24,6 +24,20 @@ function basename(file) {
 	}
 }
 
+function adicionarOutrosSignos(arraySignos) {
+	var signosMatch = ['carneiro', 'cancer', 'balanca'];
+	var signosAdd = ['aries', 'caranguejo', 'libra'];
+
+	if(arraySignos.length === 0) return;
+	
+	for (var i = 0; i < signosMatch.length; i++) {
+		var insertIndex = arraySignos.indexOf(signosMatch[i]);
+		if(insertIndex !== -1) {
+			arraySignos.splice(insertIndex, 0, signosAdd[i]);
+		}
+	}
+}
+
 switch(process.argv.length) {
 	case 3:
 		signo = process.argv[2].toLowerCase();
@@ -92,6 +106,7 @@ function HTML2Horoscopo(string) {
 		for (var i = 0; i < data.length; i++) {
 			signosTodos.push(data[i]);
 		}
+		adicionarOutrosSignos(signosTodos);
 		x(string, '#predictor option',
 			[{
 				value: '@value',
@@ -125,6 +140,7 @@ function HTML2Horoscopo(string) {
 							for (var i = 0; i < data.length; i++) {
 								signosTodos.push(data[i]);
 							}
+							adicionarOutrosSignos(signosTodos);
 							x(content2, '#predictor option',
 								[{
 									value: '@value',
