@@ -1,9 +1,9 @@
 Horos
 =====
 
-Programa que lê o horoscopo de um qualquer signo com vários previsores.
+Programa que lê o teu horoscopo com vários previsores.
 
-Le os signos da pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral/previsoes/)
+Vai buscar a informação à pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral/previsoes/)
 
 ## Plataformas
 Executa em qualquer plataforma: Windows, MacOS, Linux, etc.
