@@ -18,6 +18,7 @@ Se quiseres podes move-lo para uma pasta que esteja na $PATH (por exemplo: /usr/
 
 ## Utilização
 `horos <signo> [tempo de previsão] [previsor]`  
+
 O tempo de previsão pode ser:
 * diaria
 * semanal
