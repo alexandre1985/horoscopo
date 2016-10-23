@@ -9,7 +9,8 @@ var signosTodos = [];
 var previsorTodos = [];
 
 function help() {
-	console.log('Utilização: node '+basename(process.argv[1])+' <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
+	//console.log('Utilização: node '+basename(process.argv[1])+' <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
+	console.log('Utilização: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
 }
 
 function basename(file) {
