@@ -5,6 +5,9 @@ Programa que lê o horoscopo de um qualquer signo com vários previsores.
 
 Le os signos da pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral/previsoes/)
 
+## Plataformas
+Executa em qualquer plataforma: Windows, MacOS, Linux, etc.
+
 ## Dependências
 Este programa precisa de NodeJS para executar (http://nodejs.org/)  
 Também tens de ter uma shell BASH para invocar o programa.
