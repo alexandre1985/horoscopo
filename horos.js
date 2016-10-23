@@ -26,14 +26,14 @@ function basename(file) {
 
 function adicionarOutrosSignos(arraySignos) {
 	var signosMatch = ['carneiro', 'cancer', 'balanca'];
-	var signosAdd = ['aries', 'caranguejo', 'libra'];
+	var signosAdicionar = ['aries', 'caranguejo', 'libra'];
 
 	if(arraySignos.length === 0) return;
-	
+
 	for (var i = 0; i < signosMatch.length; i++) {
 		var insertIndex = arraySignos.indexOf(signosMatch[i]);
 		if(insertIndex !== -1) {
-			arraySignos.splice(insertIndex, 0, signosAdd[i]);
+			arraySignos.splice(insertIndex, 0, signosAdicionar[i]);
 		}
 	}
 }
