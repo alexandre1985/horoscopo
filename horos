@@ -20,7 +20,7 @@ if [ ! -r "${HOROS_PROGRAM}" ]; then
 		curl -o "${HOROS_PROGRAM}" "${HOROS_PROGRAM_LINK}"
 	elif command -v wget > /dev/null 2>&1; then
 		echo "A fazer download de ${HOROS_PROGRAM}..."
-		wget -O "${HOROS_PROGRAM}" "'${HOROS_PROGRAM_LINK}'"
+		wget -O "${HOROS_PROGRAM}" "${HOROS_PROGRAM_LINK}"
 	else
 		echo "Faz o download do programa ${HOROS_PROGRAM_LINK} e coloca-o na pasta ${HOROS_DIR}"
 		exit 2
