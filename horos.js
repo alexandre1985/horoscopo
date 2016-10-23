@@ -51,6 +51,12 @@ switch(signo) {
 	case 'caranguejo':
 		signo = 'cancer';
 	break;
+	case 'aries':
+		signo = 'carneiro';
+	break;
+	case 'libra':
+		signo = 'balanca';
+	break;
 }
 
 var http = require('http');
