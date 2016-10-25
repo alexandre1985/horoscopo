@@ -3,6 +3,8 @@ var x = xray();
 
 var entities = require("entities");
 
+var args = process.argv;
+
 var signo;
 var previsor = 'maya';
 var duracao;
@@ -40,22 +42,22 @@ function adicionarOutrosSignos(arraySignos) {
 	}
 }
 
-switch(process.argv.length) {
+switch(args.length) {
 	case 3:
-		signo = process.argv[2].toLowerCase();
+		signo = args[2].toLowerCase();
 		if(signo === '-h' || signo === '--help') {
 			help();
 			return;
 		}
 		break;
 	case 4:
-		signo = process.argv[2].toLowerCase();
-		duracao = process.argv[3].toLowerCase();
+		signo = args[2].toLowerCase();
+		duracao = args[3].toLowerCase();
 		break;
 	case 5:
-		signo = process.argv[2].toLowerCase();
-		duracao = process.argv[3].toLowerCase();
-		previsor = process.argv[4].toLowerCase();
+		signo = args[2].toLowerCase();
+		duracao = args[3].toLowerCase();
+		previsor = args[4].toLowerCase();
 		break;
 	default:
 		help();
@@ -74,6 +76,8 @@ switch(signo) {
 		signo = 'balanca';
 	break;
 }
+
+var duracaoArg = duracao;
 
 if(duracao) {
 	switch(duracao) {
@@ -239,13 +243,22 @@ function HTML2Horoscopo(string) {
 						duracao = duracaoTodos[0];
 					} else {
 						if(duracaoTodos.indexOf(duracao) === -1) { // duracao nao existe no array duracaoTodos
-							console.error('Erro: ' + previsor + ' nao tem a opcao "' + duracao + '".\nEscolha "'+duracaoTodos.join('" ou "')+'".');
+							console.error('Erro: ' + previsor + ' nao tem a opcao "' + duracaoArg + '".\nEscolha "'+duracaoTodos.join('" ou "')+'".');
 							return;
 						}
 					}
 					
 					x(string, '#'+duracao, ['p@html'])(function(err, data) {
 						var output = "";
+						output += "Hor&#243;scopo ";
+						if(duracao == 'diaria') {
+							output += 'Di&#225;rio';
+						} else if(duracao == 'semanal-amor') {
+							output += 'Semanal Amor'
+						} else {
+							output += duracao.charAt(0).toUpperCase() + duracao.slice(1);
+						}
+						output += ':\n\n';
 						for (var i = 0; i < data.length; i++) {
 							output += (i !== data.length - 1) ? data[i] + '\n' : data[i];
 						}
