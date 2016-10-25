@@ -1,6 +1,8 @@
 var xray = require('x-ray');
 var x = xray();
 
+var entities = require("entities");
+
 var signo;
 var previsor = 'maya';
 var duracao;
