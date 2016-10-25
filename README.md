@@ -11,7 +11,7 @@ Tem binários para as seguintes plataformas: Windows, MacOS, Linux, etc.
 
 ## Binários
 * Windows: <a href="https://github.com/alexandre1985/horoscopo/raw/master/horos.exe" download="">horos.exe</a>
-* Linux: [horos](https://github.com/alexandre1985/horoscopo/raw/master/horos)
+* Linux: <a href="https://github.com/alexandre1985/horoscopo/raw/master/horos" download="">horos</a>
 
 ## Instalar
 Faz o download do programa (binário) e executa-o na linha de comandos.
