@@ -65,6 +65,7 @@ switch(args.length) {
 	break;
 }
 
+var signoArg = signo;
 switch(signo) {
 	case 'caranguejo':
 		signo = 'cancer';
@@ -78,7 +79,6 @@ switch(signo) {
 }
 
 var duracaoArg = duracao;
-
 if(duracao) {
 	switch(duracao) {
 		case 'diario':
@@ -258,6 +258,7 @@ function HTML2Horoscopo(string) {
 						} else {
 							output += duracao.charAt(0).toUpperCase() + duracao.slice(1);
 						}
+						output += ' ' + signoArg.toUpperCase();
 						output += ':\n\n';
 						for (var i = 0; i < data.length; i++) {
 							output += (i !== data.length - 1) ? data[i] + '\n' : data[i];
