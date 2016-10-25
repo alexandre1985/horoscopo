@@ -224,28 +224,10 @@ function HTML2Horoscopo(string) {
 					x(string, '#'+duracao, ['p'])(function(err, data) {
 						var output = "";
 						for (var i = 0; i < data.length; i++) {
-							var texto = data[i];
-							var arrayTmpTexto = [];
-							var alreadyWrote = false;
-							if(texto.indexOf('<br/>') !== -1) {
-								arrayTmpTexto = texto.split('<br/>');
-								for (var j = 0; j < arrayTmpTexto.length; j++) {
-									output += arrayTmpTexto[j] + '\n';
-								}
-								alreadyWrote = true;
-							}
-							if(texto.indexOf('<br>') !== -1) {
-								arrayTmpTexto = texto.split('<br>');
-								for (var j = 0; j < arrayTmpTexto.length; j++) {
-									output += arrayTmpTexto[j] + '\n';
-								}
-								alreadyWrote = true;
-							}
-							if(!alreadyWrote) {
-								output += texto + '\n';
-							}
+							output += data[i];
 						}
-						output = output.replace(/\n$/, "");
+						output = output.replace(/<br\s*\/?>/mg,"\n");
+						output = entities.decodeHTML(output);
 						console.log(output);
 					});
 				});
