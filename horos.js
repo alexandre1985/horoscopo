@@ -221,7 +221,7 @@ function HTML2Horoscopo(string) {
 						}
 					}
 					
-					x(string, '#'+duracao, ['p'])(function(err, data) {
+					x(string, '#'+duracao, ['p@html'])(function(err, data) {
 						var output = "";
 						for (var i = 0; i < data.length; i++) {
 							output += (i !== data.length - 1) ? data[i] + '\n' : data[i];
