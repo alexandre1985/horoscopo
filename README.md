@@ -2,20 +2,22 @@ Horos
 =====
 
 Programa que lê o teu horoscopo com vários previsores.
+Tem previsores do Brasil e de Portugal.
 
 Vai buscar a informação à pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral/previsoes/)
 
 ## Plataformas
-Executa em qualquer plataforma: Windows, MacOS, Linux, etc.
+Tem binários para as seguintes plataformas: Windows, MacOS, Linux, etc.
 
-## Dependências
-Este programa precisa de NodeJS para executar (http://nodejs.org/)  
-Também tens de ter uma shell BASH para invocar o programa.  
-Em Windows podes fazer download de uma bash em [Git Bash](https://git-scm.com/download/win), [MinGW](https://sourceforge.net/projects/mingw-w64/) ou [Cygwin](https://cygwin.com/install.html).
+## Binários
+* Windows: [horos.exe](https://raw.githubusercontent.com/alexandre1985/horoscopo/master/horos.exe)
+* Linux: [horos](https://raw.githubusercontent.com/alexandre1985/horoscopo/master/horos)
 
 ## Instalar
-Faz o download do ficheiro `horos`. Torna-o executável com `chmod +x horos` e executa-o. Já está!  
-Se quiseres podes move-lo para uma pasta que esteja na $PATH (por exemplo: /usr/local/bin/ ou $HOME/bin/) e executa-o apartir de qualquer lado com o comando `horos`
+Faz o download do programa (binário) e executa-o na linha de comandos.
+Se quiseres executar o programa de qualquer sitio da linha de comandos faz:
+* Windows: copia o binário para a pasta C:\Windows\System32\ (não te preocupes) ou para uma pasta que pertença às "Variáveis de Ambiente" (System path)
+* MacOS ou Linux: copia o binário para uma pasta que esteja na $PATH (por exemplo: /usr/local/bin/ ou $HOME/bin/).
 
 ## Utilização
 `horos <signo> [tempo de previsão] [previsor]`  

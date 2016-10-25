@@ -28,14 +28,14 @@ function basename(file) {
 
 function adicionarOutrosSignos(arraySignos) {
 	var signosMatch = ['carneiro', 'cancer', 'balanca'];
-	var signosAdicionar = ['aries', 'caranguejo', 'libra'];
+	var signosAdd = ['aries', 'caranguejo', 'libra'];
 
 	if(arraySignos.length === 0) return;
-
+	
 	for (var i = 0; i < signosMatch.length; i++) {
 		var insertIndex = arraySignos.indexOf(signosMatch[i]);
 		if(insertIndex !== -1) {
-			arraySignos.splice(insertIndex, 0, signosAdicionar[i]);
+			arraySignos.splice(insertIndex, 0, signosAdd[i]);
 		}
 	}
 }
@@ -73,6 +73,27 @@ switch(signo) {
 	case 'libra':
 		signo = 'balanca';
 	break;
+}
+
+if(duracao) {
+	switch(duracao) {
+		case 'diario':
+		case 'dia':
+			duracao = 'diaria';
+		break;
+		case 'semana':
+			duracao = 'semanal';
+		break;
+		case 'semana amor':
+			duracao = 'semanal-amor';
+		break;
+		case 'mes':
+			duracao = 'mensal';
+		break;
+		case 'ano':
+			duracao = 'anual';
+		break;
+	}
 }
 
 var http = require('http');
