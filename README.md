@@ -1,7 +1,7 @@
 Horos
 =====
 
-Programa que lê o teu horoscopo com vários previsores.
+Programa que lê o teu horoscopo com vários previsores.  
 Tem previsores do Brasil e de Portugal.
 
 Vai buscar a informação à pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral/previsoes/)
@@ -10,8 +10,8 @@ Vai buscar a informação à pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral
 Tem binários para as seguintes plataformas: Windows, MacOS, Linux, etc.
 
 ## Binários
-* Windows: [horos.exe](https://raw.githubusercontent.com/alexandre1985/horoscopo/master/horos.exe)
-* Linux: [horos](https://raw.githubusercontent.com/alexandre1985/horoscopo/master/horos)
+* Windows: [horos.exe](https://github.com/alexandre1985/horoscopo/raw/master/horos.exe)
+* Linux: [horos](https://github.com/alexandre1985/horoscopo/raw/master/horos)
 
 ## Instalar
 Faz o download do programa (binário) e executa-o na linha de comandos.
