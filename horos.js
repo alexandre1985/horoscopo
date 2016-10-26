@@ -42,6 +42,10 @@ function adicionarOutrosSignos(arraySignos) {
 	}
 }
 
+function ignoreHTMLTags(texto) {
+	return texto.replace(/<(?:.|\n)*?>/gm, '');
+}
+
 switch(args.length) {
 	case 3:
 		signo = args[2].toLowerCase();
@@ -265,6 +269,7 @@ function HTML2Horoscopo(string) {
 						}
 						output = output.replace(/<br\s*\/?>/mg,"\n");
 						output = entities.decodeHTML(output);
+						output = ignoreHTMLTags(output);
 						console.log(output);
 					});
 				});
