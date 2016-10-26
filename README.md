@@ -4,7 +4,7 @@ Horos
 Programa que lê o teu horoscopo com vários previsores.  
 Actualmente tem previsores do Brasil (eunice-ferrari), de Portugal (maya, paulo-cardoso, etc.) e Internacionais (adrian-duncan). Isto só para nomear alguns.
 
-Vai buscar a informação à pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral/previsoes/)
+Vai buscar a informação à pagina do [SAPO Lifestyle Astral](http://lifestyle.sapo.pt/astral/previsoes/).
 
 ## Plataformas
 Tem binários para as seguintes plataformas: Windows, MacOS, Linux, etc.
