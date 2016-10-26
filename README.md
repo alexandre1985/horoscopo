@@ -10,8 +10,8 @@ Vai buscar a informação à pagina do SAPO ASTRAL (http://lifestyle.sapo.pt/astral
 Tem binários para as seguintes plataformas: Windows, MacOS, Linux, etc.
 
 ## Binários
-* Windows: <a href="horos.exe" download="">horos.exe</a>
-* Linux: <a href="horos" download="">horos</a>
+* Windows: <a href="https://github.com/alexandre1985/horoscopo/raw/master/horos.exe" download="">horos.exe</a>
+* Linux: <a href="https://github.com/alexandre1985/horoscopo/raw/master/horos" download="">horos</a>
 
 ## Instalar
 Faz o download do programa (binário) e executa-o na linha de comandos (se fores Linux faz `chmod +x horos` para torná-lo executável).  
