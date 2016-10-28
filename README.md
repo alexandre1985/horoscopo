@@ -21,6 +21,7 @@ Se quiseres executar o programa de qualquer sitio da linha de comandos faz:
 
 ## Utilização
 `horos <signo> [tempo de previsão] [previsor] [opções]`  
+`horos info [previsor]`
 
 ### tempo de previsao
 O tempo de previsão pode ser:
@@ -39,8 +40,13 @@ Se errares no tempo de previsão ou no nome do previsor o programa mostra-te quai
 As opções podem ser:
 * _--sem-titulo_ ou _-st_ -> para não mostrar o título
 * _--ficheiro nome-do-ficheiro_ ou _-f nome-do-ficheiro_ -> para guardar o output num ficheiro
-  
-  
+
+### info
+O `horos info` mostra todos os previsores disponíveis.  
+Para saberes mais informações sobre um determinado _previsor_ põe-se o nome do previsor à frente de info.  
+Por exemplo, para saber mais sobre Eunice Ferrari executa-se assim:  
+`horos info eunice-ferrari`
+
 Se te esqueceres de como utilizar podes sempre invocar a ajuda com `horos -h`.
 
 ## Executar horoscopo ao abrir linha de comandos
