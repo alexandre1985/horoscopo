@@ -3,6 +3,8 @@ var x = xray();
 
 var entities = require("entities");
 
+var fs = require('fs');
+
 var args = process.argv;
 
 var signo;
@@ -11,10 +13,13 @@ var duracao;
 var duracaoTodos = [];
 var signosTodos = [];
 var previsorTodos = [];
+var mostrarTitulo = true;
+var ficheiro;
 
 function help() {
 	//console.log('Utilização: node '+basename(process.argv[1])+' <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
-	console.log('Utilização: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
+	console.log('Utilização: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [opcoes]\n\n'+
+		'Opcoes:\n   --sem-titulo ou -st : nao mostra o titulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro');
 }
 
 function basename(file) {
@@ -44,6 +49,27 @@ function adicionarOutrosSignos(arraySignos) {
 
 function ignoreHTMLTags(texto) {
 	return texto.replace(/<(?:.|\n)*?>/gm, '');
+}
+
+// ler se tem determinados argumentos
+for (var i = args.length - 1; i >= 0; i--) {
+	var arg = args[i];
+	switch(arg) {
+		case '-st':
+		case '--sem-titulo':
+			mostrarTitulo = false;
+			args.splice(i,1);
+		break;
+		case '-f':
+		case '--ficheiro':
+			if(i === (args.length - 1) || args[i+1].charAt(0) === '-') {
+				console.error('Erro: falta ficheiro depois de ' + arg);
+				return;
+			}
+			ficheiro = args[i+1];
+			args.splice(i,2);
+		break;
+	}
 }
 
 switch(args.length) {
@@ -244,23 +270,33 @@ function HTML2Horoscopo(string) {
 					
 					x(string, '#'+duracao, ['p@html'])(function(err, data) {
 						var output = "";
-						output += "Hor&#243;scopo ";
-						if(duracao == 'diaria') {
-							output += 'Di&#225;rio';
-						} else if(duracao == 'semanal-amor') {
-							output += 'Semanal Amor'
-						} else {
-							output += duracao.charAt(0).toUpperCase() + duracao.slice(1);
+						if(mostrarTitulo) {
+							output += "Hor&#243;scopo ";
+							if(duracao == 'diaria') {
+								output += 'Di&#225;rio';
+							} else if(duracao == 'semanal-amor') {
+								output += 'Semanal Amor'
+							} else {
+								output += duracao.charAt(0).toUpperCase() + duracao.slice(1);
+							}
+							output += ' para ' + signoArg.toUpperCase();
+							output += ' de ' + previsorTodos.find(function(o){ return o.value === previsor; }).nome;
+							output += ':\n\n';
 						}
-						output += ' para ' + signoArg.toUpperCase();
-						output += ' de ' + previsorTodos.find(function(o){ return o.value === previsor; }).nome;
-						output += ':\n\n';
 						for (var i = 0; i < data.length; i++) {
 							output += (i !== data.length - 1) ? data[i] + '\n' : data[i];
 						}
 						output = output.replace(/<br\s*\/?>/mg,"\n");
 						output = entities.decodeHTML(output);
 						output = ignoreHTMLTags(output);
+						if(ficheiro) {
+							fs.writeFile(ficheiro, output, function(err) {
+							    if(err) {
+							        return console.error(err);
+							    }
+							});
+							return;
+						}
 						console.log(output);
 					});
 				});

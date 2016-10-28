@@ -14,14 +14,15 @@ Tem binários para as seguintes plataformas: Windows, Mac, Linux, etc.
 * Linux: <a href="https://github.com/alexandre1985/horoscopo/raw/master/horos" download="">horos</a>
 
 ## Instalar
-Faz o download do programa (binário) e executa-o na linha de comandos (se fores Linux faz `chmod +x horos` para torná-lo executável).  
+Faz o download do programa (binário) e executa-o na linha de comandos (se fores Mac ou Linux faz `chmod +x horos` para torná-lo executável).  
 Se quiseres executar o programa de qualquer sitio da linha de comandos faz:
 * Windows: copia o binário para a pasta C:\Windows\System32\ (não te preocupes) ou para uma pasta que pertença às "Variáveis de Ambiente" (System path)
 * Mac ou Linux: copia o binário para uma pasta que esteja na $PATH (por exemplo: /usr/local/bin/ ou $HOME/bin/).
 
 ## Utilização
-`horos <signo> [tempo de previsão] [previsor]`  
+`horos <signo> [tempo de previsão] [previsor] [opções]`  
 
+### tempo de previsao
 O tempo de previsão pode ser:
 * diaria
 * semanal
@@ -33,6 +34,12 @@ Certos previsores não tem certos tempos de previsão.
 Há ainda alguns previsores que não tem o tempo de previsão diaria. Podes utilizar `-` no tempo de previsão para dar-te o primeiro tempo de previsão disponível.
 
 Se errares no tempo de previsão ou no nome do previsor o programa mostra-te quais as opções disponíveis. Por isso não te preocupes com erros! :)
+
+### opções
+As opções podem ser:
+* _--sem-titulo_ ou _-st_ para não mostrar o título
+* _--ficheiro nome-do-ficheiro_ ou _-f nome-do-ficheiro_ para guardar o output num ficheiro
+
 
 Se te esqueceres de como utilizar podes sempre invocar a ajuda com `horos -h`.
 
