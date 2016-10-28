@@ -39,8 +39,8 @@ Se errares no tempo de previsão ou no nome do previsor o programa mostra-te quai
 As opções podem ser:
 * _--sem-titulo_ ou _-st_ -> para não mostrar o título
 * _--ficheiro nome-do-ficheiro_ ou _-f nome-do-ficheiro_ -> para guardar o output num ficheiro
-
-
+  
+  
 Se te esqueceres de como utilizar podes sempre invocar a ajuda com `horos -h`.
 
 ## Executar horoscopo ao abrir linha de comandos
