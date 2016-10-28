@@ -141,14 +141,12 @@ function HTML2Horoscopo(string) {
 		x(string, '#predictor option',
 			[{
 				value: '@value',
+				nome: '',
 				selected: '@selected'
 			}]
 			)(function(err, data) {
-			for (var i = 0; i < data.length; i++) {
-				var obj = data[i];
-				previsorTodos.push(obj.value);
-				//if(obj.selected === 'selected') previsor = obj.value;
-			}
+
+			previsorTodos = data;
 
 			var getRealDataPromise = new Promise(function(resolve, reject) {
 				if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
@@ -175,34 +173,26 @@ function HTML2Horoscopo(string) {
 							x(content2, '#predictor option',
 								[{
 									value: '@value',
+									nome: '',
 									selected: '@selected'
 								}]
 								)(function(err, data) {
-								for (var i = 0; i < data.length; i++) {
-									var obj = data[i];
-									previsorTodos.push(obj.value);
-									//if(obj.selected === 'selected') previsor = obj.value;
-								}
-								/*x(content2, '.tabs-nav', ['a@href'])(function(err, data) {
-									for (var i = 0; i < data.length; i++) {
-										duracaoTodos.push(data[i].substring(data[i].indexOf('#') + 1));
-									}*/
+								previsorTodos = data;
 
-									if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
-									else {
-										var erroMsg = "Nao consegui encontrar";
-										if(signosTodos.length === 0) {
-											erroMsg += " os signos e";
-										}
-										if(previsorTodos.length === 0) {
-											erroMsg += " os previsores e";
-										}
-										
-										erroMsg = erroMsg.replace(/e$/, "");
-										erroMsg += "existentes."
-										return reject(new Error(erroMsg));
+								if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
+								else {
+									var erroMsg = "Nao consegui encontrar";
+									if(signosTodos.length === 0) {
+										erroMsg += " os signos e";
 									}
-								//});
+									if(previsorTodos.length === 0) {
+										erroMsg += " os previsores e";
+									}
+									
+									erroMsg = erroMsg.replace(/e$/, "");
+									erroMsg += "existentes."
+									return reject(new Error(erroMsg));
+								}
 							});
 						});
 				    });
@@ -231,11 +221,11 @@ function HTML2Horoscopo(string) {
 				}
 				x(string, '.tabs-nav', ['a@href'])(function(err, data) { // isto e para ir buscar a duracaoTodos
 					// a verificacao de previsor tem de vir antes da de duracao
-					var textoTodosPrevisores = previsorTodos[0];
+					var textoTodosPrevisores = previsorTodos[0].value;
 					for (var i = 1; i < previsorTodos.length; i++) {
-						textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i]) : (' ou '+previsorTodos[i]);
+						textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i].value) : (' ou '+previsorTodos[i].value);
 					}
-					if(previsorTodos.indexOf(previsor) === -1) {
+					if(!previsorTodos.find(function(o){ return o.value === previsor; })) {
 						console.error('Erro: Nao existe o(a) previsor(a) "' + previsor + '".\nEscolha um de: '+textoTodosPrevisores+'.');
 						return;
 					}
@@ -262,7 +252,8 @@ function HTML2Horoscopo(string) {
 						} else {
 							output += duracao.charAt(0).toUpperCase() + duracao.slice(1);
 						}
-						output += ' ' + signoArg.toUpperCase();
+						output += ' para ' + signoArg.toUpperCase();
+						output += ' de ' + previsorTodos.find(function(o){ return o.value === previsor; }).nome;
 						output += ':\n\n';
 						for (var i = 0; i < data.length; i++) {
 							output += (i !== data.length - 1) ? data[i] + '\n' : data[i];
