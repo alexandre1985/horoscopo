@@ -23,6 +23,8 @@ Se quiseres executar o programa de qualquer sitio da linha de comandos faz:
 `horos <signo> [tempo de previsão] [previsor] [opções]`  
 `horos info [previsor]`
 
+Podes sempre invocar a ajuda com `horos -h`.
+
 ### tempo de previsao
 O tempo de previsão pode ser:
 * diaria
@@ -44,10 +46,9 @@ As opções podem ser:
 ### info
 O `horos info` mostra todos os previsores disponíveis.  
 Para saberes mais informações sobre um determinado _previsor_ põe-se o nome do previsor à frente de info.  
-Por exemplo, para saber mais sobre Eunice Ferrari executa-se assim:  
+Por exemplo, para saber mais sobre Eunice Ferrari faz-se assim:  
 `horos info eunice-ferrari`
 
-Se te esqueceres de como utilizar podes sempre invocar a ajuda com `horos -h`.
 
 ## Executar horoscopo ao abrir linha de comandos
 ### Windows
@@ -66,6 +67,7 @@ Executa `echo /pasta/de/horos teu_signo tempo_de_previsao previsor >> $HOME/.pro
 Podes executar por exemplo assim: `echo /home/daniel/pasta/horos gemeos diaria maya >> $HOME/.profile`  
 
 Se `horos` estiver numa pasta que esteja na $PATH, em vez de `/pasta/de/horos` podes por apenas `horos`
+
 
 ## Contribuições
 Eu adoro contribuições por isso estejam à vontade para usar o programa da maneira que quiserem e partilharem comigo as vossas modificações.  
