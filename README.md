@@ -52,7 +52,7 @@ Se `horos.exe` estiver numa pasta que pertença às "Variáveis de Ambiente", em ve
 Executa `echo /pasta/de/horos teu_signo tempo_de_previsao previsor >> $HOME/.profile`  
 Podes executar por exemplo assim: `echo /home/daniel/pasta/horos gemeos diaria maya >> $HOME/.profile`  
 
-Se `horos` estiver numa pasta que esteja na $PATH, em vez de `/pasta/de/horos` podes por apena `horos`
+Se `horos` estiver numa pasta que esteja na $PATH, em vez de `/pasta/de/horos` podes por apenas `horos`
 
 ## Contribuições
 Eu adoro contribuições por isso estejam à vontade para usar o programa da maneira que quiserem e partilharem comigo as vossas modificações.  
