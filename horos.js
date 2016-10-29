@@ -6,6 +6,7 @@ var entities = require("entities");
 var fs = require('fs');
 
 var args = process.argv;
+var msg;
 
 var signo;
 var previsor = 'maya';
@@ -18,10 +19,10 @@ var ficheiro;
 var infoPrevisor;
 
 function help() {
-	//console.log('Utilização: node '+basename(process.argv[1])+' <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
-	console.log('Utilização: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [opcoes]\n'+
+	msg = 'Utiliza&ccedil;&atilde;o: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [opcoes]\n'+
 		        '            horos info [previsor]\n\n'+
-		'Opcoes:\n   --sem-titulo ou -st : nao mostra o titulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro');
+		'Opcoes:\n   --sem-titulo ou -st : nao mostra o t&iacute;tulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro';
+	console.log(entities.decodeHTML(msg));
 }
 
 function basename(file) {
@@ -171,7 +172,8 @@ var req = http.request(options, function(res) {
 });
 
 req.on('error', function(err) {
-	console.error('Não foi possivel conectar. Provavelmente tem a ligacao em baixo.');
+	msg = 'N&atilde;o foi possivel conectar. Provavelmente tem a liga&ccedil;&atilde;o em baixo.';
+	console.error(entities.decodeHTML(msg));
 	return;
 });
 
@@ -226,7 +228,7 @@ function HTML2Horoscopo(string) {
 
 								if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
 								else {
-									var erroMsg = "Nao consegui encontrar";
+									var erroMsg = "N&atilde;o consegui encontrar";
 									if(signosTodos.length === 0) {
 										erroMsg += " os signos e";
 									}
@@ -236,7 +238,7 @@ function HTML2Horoscopo(string) {
 									
 									erroMsg = erroMsg.replace(/e$/, "");
 									erroMsg += "existentes."
-									return reject(new Error(erroMsg));
+									return reject(new Error(entities.decodeHTML(erroMsg)));
 								}
 							});
 						});
@@ -244,7 +246,8 @@ function HTML2Horoscopo(string) {
 				});
 
 				req2.on('error', function(err) {
-					console.error('Não foi possivel conectar. Tente outra vez.');
+					msg = 'N&atilde;o foi possivel conectar. Tente outra vez.';
+					console.error(entities.decodeHTML(msg));
 					return;
 				});
 
@@ -260,7 +263,7 @@ function HTML2Horoscopo(string) {
 					if(infoPrevisor === '0') {
 						var output = "";
 						if(mostrarTitulo) {
-							output += 'Os previsores disponiveis sao:\n';
+							output += 'Os previsores dispon&iacute;veis s&atilde;o:\n';
 						}
 						output += previsorTodos.map(function(o){ return o.value;}).join(', ');
 
@@ -272,7 +275,7 @@ function HTML2Horoscopo(string) {
 							});
 							return;
 						}
-						console.log(output);
+						console.log(entities.decodeHTML(output));
 						return;
 					}
 					if(!previsorTodos.find(function(o){ return o.value === infoPrevisor; })) {
@@ -280,7 +283,8 @@ function HTML2Horoscopo(string) {
 						for (var i = 1; i < previsorTodos.length; i++) {
 							textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i].value) : (' ou '+previsorTodos[i].value);
 						}
-						console.error('Erro: Nao existe o(a) previsor(a) "' + infoPrevisor + '".\nEscolha um de: '+textoTodosPrevisores+'.');
+						msg = 'Erro: N&atilde;o existe o(a) previsor(a) "' + infoPrevisor + '".\nEscolha um de: '+textoTodosPrevisores+'.';
+						console.error(entities.decodeHTML(msg));
 						return;
 					}
 					x(string, '.description div',
@@ -319,7 +323,8 @@ function HTML2Horoscopo(string) {
 					for (var i = 1; i < signosTodos.length; i++) {
 						textoTodosSignos += (i !== signosTodos.length - 1) ? (', '+signosTodos[i]) : (' ou '+signosTodos[i]);
 					}
-					console.error('Erro: Nao existe o signo "' + signo + '".\nEscolha '+textoTodosSignos+'.');
+					msg = 'Erro: N&atilde;o existe o signo "' + signo + '".\nEscolha '+textoTodosSignos+'.';
+					console.error(entities.decodeHTML(msg));
 					return;
 				}
 				x(string, '.tabs-nav', ['a@href'])(function(err, data) { // isto e para ir buscar a duracaoTodos
@@ -329,7 +334,8 @@ function HTML2Horoscopo(string) {
 						textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i].value) : (' ou '+previsorTodos[i].value);
 					}
 					if(!previsorTodos.find(function(o){ return o.value === previsor; })) {
-						console.error('Erro: Nao existe o(a) previsor(a) "' + previsor + '".\nEscolha um de: '+textoTodosPrevisores+'.');
+						msg = 'Erro: N&atilde;o existe o(a) previsor(a) "' + previsor + '".\nEscolha um de: '+textoTodosPrevisores+'.';
+						console.error(entities.decodeHTML(msg));
 						return;
 					}
 
@@ -340,7 +346,8 @@ function HTML2Horoscopo(string) {
 						duracao = duracaoTodos[0];
 					} else {
 						if(duracaoTodos.indexOf(duracao) === -1) { // duracao nao existe no array duracaoTodos
-							console.error('Erro: ' + previsor + ' nao tem a opcao "' + duracaoArg + '".\nEscolha "'+duracaoTodos.join('" ou "')+'".');
+							msg = 'Erro: ' + previsor + ' n&atilde;o tem a op&ccedil;&atilde;o "' + duracaoArg + '".\nEscolha "'+duracaoTodos.join('" ou "')+'".';
+							console.error(entities.decodeHTML(msg));
 							return;
 						}
 					}
