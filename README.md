@@ -40,8 +40,8 @@ Se errares no tempo de previsão ou no nome do previsor o programa mostra-te quai
 
 ### opções
 As opções podem ser:
-* _--sem-titulo_ ou _-st_ -> para não mostrar o título
-* _--ficheiro nome-do-ficheiro_ ou _-f nome-do-ficheiro_ -> para guardar o output num ficheiro
+* __--sem-titulo__ ou __-st__ -> para não mostrar o título
+* __--ficheiro__ _nome-do-ficheiro_ ou __-f__ _nome-do-ficheiro_ -> para guardar o output num ficheiro
 
 ### info
 O `horos info` mostra todos os previsores disponíveis.  
