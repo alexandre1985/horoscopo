@@ -57,7 +57,7 @@ Faz o download de `on_cmd_startup.cmd` para uma pasta, abre a linha de comandos,
 Substitui todas as variaveis desse comando (menos `on_cmd_startup.cmd`) pelas correspondentes que tu queres.  
 Podes executar por exemplo assim: `on_cmd_startup C:\Users\daniel\pasta\horos.exe gemeos diaria maya`  
 
-Se `horos.exe` estiver numa pasta que pertença às "Variáveis de Ambiente", em vez de `C:\pasta\de\horos\horos.exe` podes por apenas `horos`.  
+Se consegues executar `horos.exe` apartir de qualquer pasta, em vez de `C:\pasta\de\horos\horos.exe` podes por apenas `horos`.  
 
 **Nota:** se quiseres deixar de executar ao abrir a linha de comandos executa: `on_cmd_startup.cmd apagar`
 ### Mac ou Linux
@@ -66,7 +66,7 @@ Se `horos.exe` estiver numa pasta que pertença às "Variáveis de Ambiente", em ve
 Executa `echo /pasta/de/horos teu_signo tempo_de_previsao previsor >> $HOME/.profile`  
 Podes executar por exemplo assim: `echo /home/daniel/pasta/horos gemeos diaria maya >> $HOME/.profile`  
 
-Se `horos` estiver numa pasta que esteja na $PATH, em vez de `/pasta/de/horos` podes por apenas `horos`
+Se consegues executar `horos` apartir de qualquer pasta, em vez de `/pasta/de/horos` podes por apenas `horos`
 
 
 ## Contribuições
