@@ -78,12 +78,12 @@ if(args.length >= 3 && args[2] === 'info') {
 	switch(args.length) {
 		case 3:
 			infoPrevisor = '0';
+			signo = 'carneiro';
 			break;
 		case 4:
 			infoPrevisor = args[3].toLowerCase();
 			previsor = infoPrevisor;
 			signo = 'carneiro';
-			duracao = 'diaria';
 			break;
 		default:
 			help();
