@@ -259,65 +259,6 @@ function HTML2Horoscopo(string) {
 				return;
 			});
 			getRealDataPromise.then(function() {
-				if(infoPrevisor) {
-					if(infoPrevisor === '0') {
-						var output = "";
-						if(mostrarTitulo) {
-							output += 'Os previsores dispon&iacute;veis s&atilde;o:\n';
-						}
-						output += previsorTodos.map(function(o){ return o.value;}).join(', ');
-
-						if(ficheiro) {
-							fs.writeFile(ficheiro, output, function(err) {
-							    if(err) {
-							        return console.error(err);
-							    }
-							});
-							return;
-						}
-						console.log(entities.decodeHTML(output));
-						return;
-					}
-					if(!previsorTodos.find(function(o){ return o.value === infoPrevisor; })) {
-						var textoTodosPrevisores = previsorTodos[0].value;
-						for (var i = 1; i < previsorTodos.length; i++) {
-							textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i].value) : (' ou '+previsorTodos[i].value);
-						}
-						msg = 'Erro: N&atilde;o existe o(a) previsor(a) "' + infoPrevisor + '".\nEscolha um de: '+textoTodosPrevisores+'.';
-						console.error(entities.decodeHTML(msg));
-						return;
-					}
-					x(string, '.description div',
-						[{ 
-							titulo: 'h4',
-							texto: ''
-						}]
-						)(function(err, data) {
-						var output = "";
-						if(mostrarTitulo) {
-							output += entities.decodeHTML('Informa&ccedil;&atilde;o de ')+
-								previsorTodos.find(function(o){ return o.value === infoPrevisor; }).nome +':\n\n';
-						}
-						for (var i = 0; i < data.length; i++) {
-							var obj = data[i];
-							output += '> '+obj.titulo+'\n';
-							var texto = obj.texto;
-							texto = texto.substring(texto.indexOf(obj.titulo)+(obj.titulo).length).trim()+((i === data.length-1) ? '' : '\n');
-							output += ignoreHTMLTags(texto);
-						}
-						if(ficheiro) {
-							fs.writeFile(ficheiro, output, function(err) {
-							    if(err) {
-							        return console.error(err);
-							    }
-							});
-							return;
-						}
-						console.log(output);
-						return;
-					});
-					return;
-				}
 				if(signosTodos.indexOf(signo) === -1) {
 					var textoTodosSignos = signosTodos[0];
 					for (var i = 1; i < signosTodos.length; i++) {
@@ -342,6 +283,75 @@ function HTML2Horoscopo(string) {
 					for (var i = 0; i < data.length; i++) {
 						duracaoTodos.push(data[i].substring(data[i].lastIndexOf('#') + 1));
 					}
+
+					// o info vem interromper este raciocinio
+					if(infoPrevisor) {
+						if(infoPrevisor === '0') {
+							var output = "";
+							if(mostrarTitulo) {
+								output += 'Os previsores dispon&iacute;veis s&atilde;o:\n';
+							}
+							output += previsorTodos.map(function(o){ return o.value;}).join(', ');
+
+							if(ficheiro) {
+								fs.writeFile(ficheiro, output, function(err) {
+								    if(err) {
+								        return console.error(err);
+								    }
+								});
+								return;
+							}
+							console.log(entities.decodeHTML(output));
+							return;
+						}
+						if(!previsorTodos.find(function(o){ return o.value === infoPrevisor; })) {
+							var textoTodosPrevisores = previsorTodos[0].value;
+							for (var i = 1; i < previsorTodos.length; i++) {
+								textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i].value) : (' ou '+previsorTodos[i].value);
+							}
+							msg = 'Erro: N&atilde;o existe o(a) previsor(a) "' + infoPrevisor + '".\nEscolha um de: '+textoTodosPrevisores+'.';
+							console.error(entities.decodeHTML(msg));
+							return;
+						}
+						x(string, '.description div',
+							[{ 
+								titulo: 'h4',
+								texto: ''
+							}]
+							)(function(err, data) {
+							var output = "";
+							if(mostrarTitulo) {
+								output += entities.decodeHTML('Informa&ccedil;&atilde;o de ')+
+									previsorTodos.find(function(o){ return o.value === infoPrevisor; }).nome +':\n\n';
+							}
+							for (var i = 0; i < data.length; i++) {
+								var obj = data[i];
+								output += '> '+obj.titulo+'\n';
+								var texto = obj.texto;
+								texto = texto.substring(texto.indexOf(obj.titulo)+(obj.titulo).length).trim()+'\n\n';
+								output += ignoreHTMLTags(texto);
+							}
+							msg = '"'+duracaoTodos[0]+'"';
+							for (var i = 1; i < duracaoTodos.length; i++) {
+								msg += (i === duracaoTodos.length - 1) ? ' ou "'+duracaoTodos[i]+'"' : ', "'+duracaoTodos[i]+'"';
+							}
+							output += entities.decodeHTML('> Tempos de previs&atilde;o\n');
+							output += msg;
+							if(ficheiro) {
+								fs.writeFile(ficheiro, output, function(err) {
+								    if(err) {
+								        return console.error(err);
+								    }
+								});
+								return;
+							}
+							console.log(output);
+							return;
+						});
+						return;
+					}
+					// acabou o info
+
 					if(!duracao || duracao.length === 0 || duracao === '-') {
 						duracao = duracaoTodos[0];
 					} else {
