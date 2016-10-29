@@ -15,10 +15,12 @@ var signosTodos = [];
 var previsorTodos = [];
 var mostrarTitulo = true;
 var ficheiro;
+var infoPrevisor;
 
 function help() {
 	//console.log('Utilização: node '+basename(process.argv[1])+' <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor]');
-	console.log('Utilização: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [opcoes]\n\n'+
+	console.log('Utilização: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [opcoes]\n'+
+		        '            horos info [previsor]\n\n'+
 		'Opcoes:\n   --sem-titulo ou -st : nao mostra o titulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro');
 }
 
@@ -72,40 +74,57 @@ for (var i = args.length - 1; i >= 0; i--) {
 	}
 }
 
-switch(args.length) {
-	case 3:
-		signo = args[2].toLowerCase();
-		if(signo === '-h' || signo === '--help') {
+if(args.length >= 3 && args[2] === 'info') {
+	switch(args.length) {
+		case 3:
+			infoPrevisor = '0';
+			break;
+		case 4:
+			infoPrevisor = args[3].toLowerCase();
+			previsor = infoPrevisor;
+			signo = 'carneiro';
+			duracao = 'diaria';
+			break;
+		default:
 			help();
 			return;
-		}
+	}
+} else {
+	switch(args.length) {
+		case 3:
+			signo = args[2].toLowerCase();
+			if(signo === '-h' || signo === '--help') {
+				help();
+				return;
+			}
+			break;
+		case 4:
+			signo = args[2].toLowerCase();
+			duracao = args[3].toLowerCase();
+			break;
+		case 5:
+			signo = args[2].toLowerCase();
+			duracao = args[3].toLowerCase();
+			previsor = args[4].toLowerCase();
+			break;
+		default:
+			help();
+			return;
 		break;
-	case 4:
-		signo = args[2].toLowerCase();
-		duracao = args[3].toLowerCase();
-		break;
-	case 5:
-		signo = args[2].toLowerCase();
-		duracao = args[3].toLowerCase();
-		previsor = args[4].toLowerCase();
-		break;
-	default:
-		help();
-		return;
-	break;
-}
+	}
 
-var signoArg = signo;
-switch(signo) {
-	case 'caranguejo':
-		signo = 'cancer';
-	break;
-	case 'aries':
-		signo = 'carneiro';
-	break;
-	case 'libra':
-		signo = 'balanca';
-	break;
+	var signoArg = signo;
+	switch(signo) {
+		case 'caranguejo':
+			signo = 'cancer';
+		break;
+		case 'aries':
+			signo = 'carneiro';
+		break;
+		case 'libra':
+			signo = 'balanca';
+		break;
+	}
 }
 
 var duracaoArg = duracao;
@@ -237,6 +256,64 @@ function HTML2Horoscopo(string) {
 				return;
 			});
 			getRealDataPromise.then(function() {
+				if(infoPrevisor) {
+					if(infoPrevisor === '0') {
+						var output = "";
+						if(mostrarTitulo) {
+							output += 'Os previsores disponiveis sao:\n';
+						}
+						output += previsorTodos.map(function(o){ return o.value;}).join(', ');
+
+						if(ficheiro) {
+							fs.writeFile(ficheiro, output, function(err) {
+							    if(err) {
+							        return console.error(err);
+							    }
+							});
+							return;
+						}
+						console.log(output);
+						return;
+					}
+					if(!previsorTodos.find(function(o){ return o.value === infoPrevisor; })) {
+						var textoTodosPrevisores = previsorTodos[0].value;
+						for (var i = 1; i < previsorTodos.length; i++) {
+							textoTodosPrevisores += (i !== previsorTodos.length - 1) ? (', '+previsorTodos[i].value) : (' ou '+previsorTodos[i].value);
+						}
+						console.error('Erro: Nao existe o(a) previsor(a) "' + infoPrevisor + '".\nEscolha um de: '+textoTodosPrevisores+'.');
+						return;
+					}
+					x(string, '.description div',
+						[{ 
+							titulo: 'h4',
+							texto: ''
+						}]
+						)(function(err, data) {
+						var output = "";
+						if(mostrarTitulo) {
+							output += entities.decodeHTML('Informa&ccedil;&atilde;o de ')+
+								previsorTodos.find(function(o){ return o.value === infoPrevisor; }).nome +':\n\n';
+						}
+						for (var i = 0; i < data.length; i++) {
+							var obj = data[i];
+							output += '> '+obj.titulo+'\n';
+							var texto = obj.texto;
+							texto = texto.substring(texto.indexOf(obj.titulo)+(obj.titulo).length).trim()+((i === data.length-1) ? '' : '\n');
+							output += ignoreHTMLTags(texto);
+						}
+						if(ficheiro) {
+							fs.writeFile(ficheiro, output, function(err) {
+							    if(err) {
+							        return console.error(err);
+							    }
+							});
+							return;
+						}
+						console.log(output);
+						return;
+					});
+					return;
+				}
 				if(signosTodos.indexOf(signo) === -1) {
 					var textoTodosSignos = signosTodos[0];
 					for (var i = 1; i < signosTodos.length; i++) {
