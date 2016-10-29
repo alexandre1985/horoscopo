@@ -4,7 +4,7 @@ HOROS_PROGRAM="horos.js"
 HOROS_PROGRAM_LINK="https://raw.githubusercontent.com/alexandre1985/horoscopo/master/horos.js"
 
 if ! command -v node > /dev/null 2>&1; then
-	echo -e "Erro: Falta instalar o NodeJS.\n\nWindows/MacOS: nodejs.org/en/download/\nLinux: nodejs.org/en/download/package-manager/"
+	echo -e "Erro: Falta instalar o NodeJS.\n\nMacOS: nodejs.org/en/download/"
 	exit 1
 fi
 
