@@ -14,7 +14,7 @@ Tem binários para as seguintes plataformas: Windows, Mac, Linux, etc.
 * Linux: <a href="https://github.com/alexandre1985/horoscopo/raw/master/horos" download="">horos</a>
 
 ## Instalar
-Faz o download do programa (binário) e executa-o na linha de comandos (se fores Mac ou Linux faz `chmod +x horos` para torná-lo executável).  
+Faz o download do programa (binário), abre a linha de comandos e executa-o (se fores Mac ou Linux faz `chmod +x horos` para torná-lo executável).  
 Se quiseres executar o programa de qualquer sitio da linha de comandos faz:
 * Windows: copia o binário para a pasta C:\Windows\System32\ (não te preocupes) ou para uma pasta que pertença às "Variáveis de Ambiente" (System path)
 * Mac ou Linux: copia o binário para uma pasta que esteja na $PATH (por exemplo: /usr/local/bin/ ou $HOME/bin/).
