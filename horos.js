@@ -19,9 +19,9 @@ var ficheiro;
 var infoPrevisor;
 
 function help() {
-	msg = 'Utiliza&ccedil;&atilde;o: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [opcoes]\n'+
+	msg = 'Utiliza&ccedil;&atilde;o: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [op&ccedil;&otilde;es]\n'+
 		        '            horos info [previsor]\n\n'+
-		'Opcoes:\n   --sem-titulo ou -st : n&atilde;o mostra o t&iacute;tulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro';
+		'Op&ccedil;&otilde;es:\n   --sem-titulo ou -st : n&atilde;o mostra o t&iacute;tulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro';
 	console.log(entities.decodeHTML(msg));
 }
 
