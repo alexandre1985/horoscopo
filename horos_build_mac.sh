@@ -61,6 +61,11 @@ if ! command -v nexe > /dev/null 2>&1; then
 	sudo npm install nexe -g
 fi
 
+if ! command -v gcc > /dev/null 2>&1; then
+	echo -e "Erro: Falta instalar o gcc"
+	exit 1
+fi
+
 nexe && echo "Concluido com sucesso!" || echo "Ocorreu um erro!"
 
 exit 0
