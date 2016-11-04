@@ -359,10 +359,11 @@ function HTML2Horoscopo(string) {
 							output += "Hor&#243;scopo ";
 							if(duracao == 'diaria') {
 								output += 'Di&#225;rio';
-							} else if(duracao == 'semanal-amor') {
-								output += 'Semanal Amor'
 							} else {
-								output += duracao.charAt(0).toUpperCase() + duracao.slice(1);
+								var tmp = duracao;
+								tmp = tmp.replace(/-/g, ' ');
+								tmp = tmp.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+								output += tmp;
 							}
 							output += ' para ' + signoArg.toUpperCase();
 							output += ' de ' + previsorTodos.find(function(o){ return o.value === previsor; }).nome;
