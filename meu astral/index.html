@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Meu Horóscopo</title>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<img id="close" src="close.png" width="24" height="24" onclick="window.close();">
+	<div class="titulos">
+		<h1>Meu Astral</h1>
+	</div>
+	<div class='principal'>
+		<h2></h2>
+		<div id='horoscopo'><p></p></div>
+		<div id='botoesDuracao' align="center"></div>
+		<div align='center'>
+			<span><b>Previsor:</b>&nbsp;</span>
+			<select id='comboPrevisores' onchange="horos(this.value)"></select>
+		</div>
+	</div>
+	<footer>
+		<div class="footercontent">
+			<a href="definicoes.html">Definições</a>
+		</div>
+	</footer>
+</body>
+<script type="text/javascript" src="horos.js"></script>
+<script type="text/javascript">
+	window.onload = horos();
+</script>
+</html>

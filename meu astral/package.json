@@ -1,0 +1,21 @@
+{
+  "name": "MeuAstral",
+  "version": "0.1.0",
+  "description": "Sabe o horoscopo do teu signo",
+  "keywords": [
+    "horoscopo",
+    "signo",
+    "programa"
+  ],
+  "main": "index.html",
+  "window": {
+    "toobar": false,
+    "frame": false,
+    "width": 700,
+    "height": 450
+  },
+  "dependencies": {
+    "ospath": "^1.2.2",
+    "x-ray": "^2.3.1"
+  }
+}

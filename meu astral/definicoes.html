@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Meu Horóscopo</title>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<img id="close" src="close.png" width="24" height="24" onclick="window.close();">
+	<div class="titulos">
+		<h1>Meu Astral</h1>
+	</div>
+	<div class='principal'>
+		<h2>Pré-Definições</h2>
+		<div id='erro' align="center"><p></p></div>
+		<div align='center'>
+			<div>
+				<span><b>Signos de País:</b>&nbsp;</span>
+				<select id='comboPais' onchange="signosCarregarPais(this.value)"></select>
+			</div>
+			<div>
+				<span><b>Signo:</b>&nbsp;</span>
+				<select id='comboSigno'></select>
+			</div>
+			<div>
+				<span><b>Previsor:</b>&nbsp;</span>
+				<select id='comboPrevisores' onchange="defCarregarDuracao(this.value)"></select>
+			</div>
+			<div>
+				<span><b>Tempo de Previsão:</b>&nbsp;</span>
+				<select id='comboDuracao'></select>
+			</div>
+			<button id="guardar" onclick="guardar()">Guardar</button>
+		</div>
+	</div>
+	<footer>
+		<div class="footercontent">
+			<a href="index.html">Voltar a Horóscopo</a>
+		</div>
+	</footer>
+</body>
+<script type="text/javascript" src="definicoes.js"></script>
+<script type="text/javascript">
+	window.onload = defCarregar();
+</script>
+</html>

@@ -1,0 +1,78 @@
+h1 {
+	font-family: 'Pacifico', Helvetica, sans-serif;
+	color: #2b2b2b;
+	text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+	text-align: center;
+}
+
+h2 {
+	font-family: 'Merienda One', Helvetica, sans-serif;
+	color: rgba(0,0,0,0.7);
+	
+}
+
+#horoscopo {
+	font-family: 'Open Sans', sans-serif;;
+	color: #2b2b2b;
+	font-size: 93%;
+}
+
+.bt {
+	margin-right: 7px;
+	min-width: 55px;
+}
+
+#comboPrevisores {
+	margin-top: 20px;
+}
+
+body {
+	background-color: floralwhite;
+}
+
+.titulo img {
+	float: left;
+	width: 85px;
+	height: 85px;
+}
+
+.titulo h1 {
+	float: left;
+	width: 266px;
+}
+
+.titulo {
+	overflow: auto;
+	display: table;
+	margin: 0 auto;
+}
+
+#close {
+	position: absolute;
+	top: 3px;
+	right: 4px;
+}
+
+footer {
+    position:relative;
+    bottom:0;
+}
+
+.footercontent {
+	margin-left: 5px;
+}
+
+.footercontent > a {
+	text-decoration: none;
+	color: gray;
+	font-weight: 500;
+}
+
+#erro {
+	color: darkred;
+}
+
+#guardar {
+	margin-top: 15px;
+	min-width: 50px;
+}
