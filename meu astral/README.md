@@ -12,7 +12,7 @@ Está disponível para as seguintes plataformas: Windows, Mac, Linux, etc.
 ## Download
 * Windows: <a href="https://github.com/alexandre1985/horoscopo/raw/master/meu%20astral/installer/Meu%20Astral-64bit.msi" download="">64-bit</a>  <a href="https://github.com/alexandre1985/horoscopo/raw/master/meu%20astral/installer/Meu%20Astral-32bit.msi" download="">32-bit</a>
 * Mac: 
-* Linux:
+* Linux: <a href="https://github.com/alexandre1985/horoscopo/raw/master/meu%20astral/installer/meuAstral_x64.zip" download="">64-bit</a>  <a href="https://github.com/alexandre1985/horoscopo/raw/master/meu%20astral/installer/meuAstral_x86.zip" download="">32-bit</a>
 
 ## Instalar
 * Windows: clica duas vezes no instalador, que ele instala tudo automaticamente.
