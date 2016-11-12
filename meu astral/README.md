@@ -16,8 +16,8 @@ Está disponível para as seguintes plataformas: Windows, Mac, Linux, etc.
 
 ## Instalar
 * Windows: clica duas vezes no instalador, que ele instala tudo automaticamente.
-* Mac: 
-* Linux:
+* Mac: faz duplo clique para descomprimir o ficheiro .zip, e depois faz copia o ficheiro .app para a pasta Aplicações
+* Linux: faz unzip e executa o script `install` ou o script `install_root`
 
 
 ## Contribuições
