@@ -10,7 +10,7 @@ Vai buscar a informação à pagina do [SAPO Lifestyle Astral](http://lifestyle.sap
 Está disponível para as seguintes plataformas: Windows, Mac, Linux, etc.
 
 ## Download
-* Windows: <a href="https://github.com/alexandre1985/horoscopo/raw/master/installer/Meu Astral-64bit.msi" download="">64-bit</a>  <a href="https://github.com/alexandre1985/horoscopo/raw/master/installer/Meu Astral-32bit.msi" download="">32-bit</a>
+* Windows: <a href="https://github.com/alexandre1985/horoscopo/raw/master/meu%20astral/installer/Meu%20Astral-64bit.msi" download="">64-bit</a>  <a href="https://github.com/alexandre1985/horoscopo/raw/master/meu%20astral/installer/Meu%20Astral-32bit.msi" download="">32-bit</a>
 * Mac: 
 * Linux:
 
