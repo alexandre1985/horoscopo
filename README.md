@@ -1,4 +1,4 @@
-Horoscopo
+Horóscopo
 =========
 
 Tem dois programas que lê o teu horóscopo.  
