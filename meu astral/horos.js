@@ -139,7 +139,8 @@ function HTML2Horoscopo(string) {
 			criarBotoes();
 			botoes = true;
 		}
-		x(string, '#'+duracao, ['p@html'])(function(err, data) {
+		x(string, '#'+duracao, [['p@html']])(function(err, data) {
+			data = data[0];
 			let texto = "";
 			for (let i = 0; i < data.length; i++) {
 				texto += data[i] + '<br>';

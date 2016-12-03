@@ -353,7 +353,8 @@ function HTML2Horoscopo(string) {
 						}
 					}
 					
-					x(string, '#'+duracao, ['p@html'])(function(err, data) {
+					x(string, '#'+duracao, [['p@html']])(function(err, data) {
+						data = data[0];
 						var output = "";
 						if(mostrarTitulo) {
 							output += "Hor&#243;scopo ";
