@@ -286,7 +286,7 @@ function HTML2Horoscopo(string) {
 					console.error(entities.decodeHTML(msg));
 					return;
 				}
-				x(string, '.tabs-nav', ['a@href'])(function(err, data) { // isto e para ir buscar a duracaoTodos
+				x(string, '.tabs-nav a', [{ valor: '@href', nome: '' }])(function(err, data) { // isto e para ir buscar a duracaoTodos
 					// a verificacao de previsor tem de vir antes da de duracao
 					var textoTodosPrevisores = previsorTodos[0].value;
 					for (var i = 1; i < previsorTodos.length; i++) {
@@ -298,9 +298,15 @@ function HTML2Horoscopo(string) {
 						return;
 					}
 
+
 					for (var i = 0; i < data.length; i++) {
-						duracaoTodos.push(data[i].substring(data[i].lastIndexOf('#') + 1));
+						var valorRaw = data[i].valor;
+						var valor = valorRaw.substring(valorRaw.lastIndexOf('#') + 1)
+						data[i].valor = valor;
 					}
+
+					duracaoTodos = data;
+
 
 					// o info vem interromper este raciocinio
 					if(infoPrevisor) {
@@ -322,9 +328,9 @@ function HTML2Horoscopo(string) {
 								texto = texto.substring(texto.indexOf(obj.titulo)+(obj.titulo).length).trim()+'\n\n';
 								output += ignoreHTMLTags(texto);
 							}
-							msg = '"'+duracaoTodos[0]+'"';
+							msg = '"'+duracaoTodos[0].valor+'"';
 							for (var i = 1; i < duracaoTodos.length; i++) {
-								msg += (i === duracaoTodos.length - 1) ? ' ou "'+duracaoTodos[i]+'"' : ', "'+duracaoTodos[i]+'"';
+								msg += (i === duracaoTodos.length - 1) ? ' ou "'+duracaoTodos[i].valor+'"' : ', "'+duracaoTodos[i].valor+'"';
 							}
 							output += entities.decodeHTML('> Tempos de previs&atilde;o\n');
 							output += msg;
@@ -344,10 +350,10 @@ function HTML2Horoscopo(string) {
 					// acabou o info
 
 					if(!duracao || duracao.length === 0 || duracao === '-') {
-						duracao = duracaoTodos[0];
+						duracao = duracaoTodos[0].valor;
 					} else {
-						if(duracaoTodos.indexOf(duracao) === -1) { // duracao nao existe no array duracaoTodos
-							msg = 'Erro: ' + previsor + ' n&atilde;o tem o tempo de previs&atilde;o "' + duracaoArg + '".\n\nEscolha "'+duracaoTodos.join('" ou "')+'".';
+						if(duracaoTodos.map(o=>o.valor).indexOf(duracao) === -1) { // duracao nao existe no array duracaoTodos
+							msg = 'Erro: ' + previsor + ' n&atilde;o tem o tempo de previs&atilde;o "' + duracaoArg + '".\n\nEscolha "'+duracaoTodos.map(o=>o.valor).join('" ou "')+'".';
 							console.error(entities.decodeHTML(msg));
 							return;
 						}
@@ -361,9 +367,7 @@ function HTML2Horoscopo(string) {
 							if(duracao == 'diaria') {
 								output += 'Di&#225;rio';
 							} else {
-								var tmp = duracao;
-								tmp = tmp.replace(/-/g, ' ');
-								tmp = tmp.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+								var tmp = duracaoTodos.find(o=>o.valor === duracao).nome;
 								output += tmp;
 							}
 							output += ' para ' + signoArg.toUpperCase();
