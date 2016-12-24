@@ -46,6 +46,11 @@ if [ ! -d "./node_modules/entities" ]; then
 	npm install entities
 fi
 
+if [ ! -d "./node_modules/request" ]; then
+	echo "A instalar modulo 'request'..."
+	npm install request
+fi
+
 if [ ! -d "./node_modules/x-ray" ]; then
 	echo -e "Falta o modulo x-ray.\nA instalar modulo 'x-ray' automaticamente..."
 	npm install x-ray

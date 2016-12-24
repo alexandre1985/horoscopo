@@ -17,11 +17,13 @@ var previsorTodos = [];
 var mostrarTitulo = true;
 var ficheiro;
 var infoPrevisor;
+var proxy;
 
 function help() {
 	msg = 'Utiliza&ccedil;&atilde;o: horos <signo> [diaria|semanal|semanal-amor|mensal|anual] [previsor] [op&ccedil;&otilde;es]\n'+
 		        '            horos info [previsor]\n\n'+
-		'Op&ccedil;&otilde;es:\n   --sem-titulo ou -st : n&atilde;o mostra o t&iacute;tulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro';
+		'Op&ccedil;&otilde;es:\n   --sem-titulo ou -st : n&atilde;o mostra o t&iacute;tulo\n   --ficheiro ou -f <nome do ficheiro> : grava o output num ficheiro\n'+
+		'   --proxy <http://user:pass@host:port> : define proxy para aceder &agrave; internet';
 	console.log(entities.decodeHTML(msg));
 }
 
@@ -70,6 +72,14 @@ for (var i = args.length - 1; i >= 0; i--) {
 				return;
 			}
 			ficheiro = args[i+1];
+			args.splice(i,2);
+		break;
+		case '--proxy':
+			if(i === (args.length - 1) || args[i+1].charAt(0) === '-') {
+				console.error('Erro: falta http://user:pass@host:port depois de ' + arg);
+				return;
+			}
+			proxy = args[i+1];
 			args.splice(i,2);
 		break;
 	}
@@ -150,34 +160,20 @@ if(duracao) {
 	}
 }
 
-var http = require('http');
+var request = require('request');
 
-var options = {
-    host: 'lifestyle.sapo.pt',
-    port: 80,
-    path: '/astral/previsoes/'+previsor+'?signo='+signo
-};
+if(proxy) {
+	request.defaults({proxy: proxy});
+}
 
-var content = "";   
-
-var req = http.request(options, function(res) {
-    res.setEncoding("utf8");
-    res.on("data", function (chunk) {
-        content += chunk;
-    });
-
-    res.on("end", function () {
-        HTML2Horoscopo(content);
-    });
-});
-
-req.on('error', function(err) {
-	msg = 'N&atilde;o foi possivel conectar. Provavelmente tem a liga&ccedil;&atilde;o em baixo.';
+request('http://lifestyle.sapo.pt/astral/previsoes/'+previsor+'?signo='+signo, function (error, response, body) {
+  if (error || response.statusCode !== 200) {
+    msg = 'N&atilde;o foi possivel conectar. Provavelmente tem a liga&ccedil;&atilde;o em baixo.';
 	console.error(entities.decodeHTML(msg));
-	return;
+    return;
+  }
+  HTML2Horoscopo(body);
 });
-
-req.end();
 
 function HTML2Horoscopo(string) {
 	x(string, '#astrological_sign option', ['@value'])(function(err, data) {
