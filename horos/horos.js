@@ -167,7 +167,7 @@ if(proxy) {
 }
 
 request('http://lifestyle.sapo.pt/astral/previsoes/'+previsor+'?signo='+signo, function (error, response, body) {
-  if (error || response.statusCode !== 200) {
+  if (error) {
     msg = 'N&atilde;o foi possivel conectar. Provavelmente tem a liga&ccedil;&atilde;o em baixo.';
 	console.error(entities.decodeHTML(msg));
     return;
@@ -193,61 +193,44 @@ function HTML2Horoscopo(string) {
 
 			var getRealDataPromise = new Promise(function(resolve, reject) {
 				if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
-				var options2 = {
-				    host: 'lifestyle.sapo.pt',
-				    port: 80,
-				    path: '/astral/previsoes/maya?signo=carneiro'
-				};
 
-				var content2 = "";   
+				request('http://lifestyle.sapo.pt/astral/previsoes/maya?signo=carneiro', function (error, response, body) {
+					if (error || response.statusCode !== 200) {
+						msg = 'N&atilde;o foi possivel conectar. Tente outra vez.';
+						console.error(entities.decodeHTML(msg));
+						return;
+					}
+					x(body, '#astrological_sign option', ['@value'])(function(err, data) {
+						for (var i = 0; i < data.length; i++) {
+							signosTodos.push(data[i]);
+						}
+						adicionarOutrosSignos(signosTodos);
+						x(body, '#predictor option',
+							[{
+								value: '@value',
+								nome: '',
+								selected: '@selected'
+							}]
+							)(function(err, data) {
+							previsorTodos = data;
 
-				var req2 = http.request(options2, function(res2) {
-				    res2.setEncoding("utf8");
-				    res2.on("data", function (chunk2) {
-				        content2 += chunk2;
-				    });
-
-				    res2.on("end", function () {
-				        x(content2, '#astrological_sign option', ['@value'])(function(err, data) {
-							for (var i = 0; i < data.length; i++) {
-								signosTodos.push(data[i]);
-							}
-							adicionarOutrosSignos(signosTodos);
-							x(content2, '#predictor option',
-								[{
-									value: '@value',
-									nome: '',
-									selected: '@selected'
-								}]
-								)(function(err, data) {
-								previsorTodos = data;
-
-								if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
-								else {
-									var erroMsg = "N&atilde;o consegui encontrar";
-									if(signosTodos.length === 0) {
-										erroMsg += " os signos e";
-									}
-									if(previsorTodos.length === 0) {
-										erroMsg += " os previsores e";
-									}
-									
-									erroMsg = erroMsg.replace(/e$/, "");
-									erroMsg += "existentes."
-									return reject(new Error(entities.decodeHTML(erroMsg)));
+							if(signosTodos.length !== 0 && previsorTodos.length !== 0)  return resolve();
+							else {
+								var erroMsg = "N&atilde;o consegui encontrar";
+								if(signosTodos.length === 0) {
+									erroMsg += " os signos e";
 								}
-							});
+								if(previsorTodos.length === 0) {
+									erroMsg += " os previsores e";
+								}
+								
+								erroMsg = erroMsg.replace(/e$/, "");
+								erroMsg += "existentes."
+								return reject(new Error(entities.decodeHTML(erroMsg)));
+							}
 						});
-				    });
+					});
 				});
-
-				req2.on('error', function(err) {
-					msg = 'N&atilde;o foi possivel conectar. Tente outra vez.';
-					console.error(entities.decodeHTML(msg));
-					return;
-				});
-
-				req2.end();
 			});
 
 			getRealDataPromise.catch(function(err) {
