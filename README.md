@@ -1,10 +1,10 @@
-Horóscopo
+HorÃ³scopo
 =========
 
-Tem dois programas que lê o teu horóscopo no PC.  
-Se quiseres um programa com gráficos visuais entra na pasta [Meu Astral](./meu astral).  
-Se quiseres um programa que mostra o horóscopo na linha de comandos entra na pasta [Horos](./horos).  
+Tem dois programas que lÃª o teu horÃ³scopo no PC.  
+Se quiseres um programa com grÃ¡ficos visuais entra na pasta [Meu Astral](./meu\ astral).  
+Se quiseres um programa que mostra o horÃ³scopo na linha de comandos entra na pasta [Horos](./horos).  
 Seja qual for o teu destino, Boa Viagem! :)
 
-## Licença
+## LicenÃ§a
 MIT
