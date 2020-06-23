@@ -1,3 +1,5 @@
+( this repository now lives at [https://gitlab.com/alexandre1985/horoscopo/](https://gitlab.com/alexandre1985/horoscopo/) )
+
 Horóscopo
 =========
 
